@@ -20,15 +20,15 @@
 
 ## Abstract
 
-We present SIGMA-Net, a two-stage residual correction framework for simultaneous building/vegetation cover segmentation and height estimation from AlphaEarth satellite embeddings. The core insight is a deliberate decomposition of the prediction problem: rather than training a single model to solve the full four-task prediction problem from scratch (the *master problem*), we first train a strong multitask model — GeoMTConvNeXt — to generate a structural prior, and then train a compact specialist network whose sole objective is to detect and correct the errors in that prior (the *slave problem*). This decomposition reduces the effective output search space by an order of magnitude, enables fast convergence with limited training data, and produces a final model of only 9.2 million parameters that achieves competitive results on all five competition metrics.
+We present SIGMA-Net, a two-stage residual correction framework for simultaneous building/vegetation cover segmentation and height estimation from AlphaEarth satellite embeddings. The core insight is a deliberate decomposition of the prediction problem: rather than training a single model to solve the full four-task prediction problem from scratch (the *master problem*), we first train a strong multitask model GeoMTConvNeXt to generate a structural prior, and then train a compact specialist network whose sole objective is to detect and correct the errors in that prior (the *slave problem*). This decomposition reduces the effective output search space by an order of magnitude, enables fast convergence with limited training data, and produces a final model of only 9.2 million parameters that achieves competitive results on all five competition metrics.
 
 ---
 
 ## 1. Problem Framing: Master vs. Slave Problem
 
-The competition requires predicting five quantities per 256×256 tile from compressed 64-channel AlphaEarth satellite embeddings: building cover, vegetation cover, water cover, building height, and vegetation height. Solved naively — a single model trained end-to-end from embedding to output — this is the *master problem*. It is hard because the model must simultaneously internalize geographic structure, spectral-to-semantic mappings, object boundary priors, and cross-task correlations across a heterogeneous loss surface.
+The competition requires predicting five quantities per 256×256 tile from compressed 64-channel AlphaEarth satellite embeddings: building cover, vegetation cover, water cover, building height, and vegetation height. Solved naively a single model trained end-to-end from embedding to output this is the *master problem*. It is hard because the model must simultaneously internalize geographic structure, spectral-to-semantic mappings, object boundary priors, and cross-task correlations across a heterogeneous loss surface.
 
-Our key observation is that Stage 1 — GeoMTConvNeXt, a multitask model we trained end-to-end on the competition data — already produces predictions that are a **credible but imperfect prior**: they capture global structure and achieve strong performance on vegetation and water, but carry systematic local errors on buildings and height in complex urban scenes. The residual between this prior and the ground truth is far smaller and more structured than the full prediction space.
+Our key observation is that Stage 1 — GeoMTConvNeXt, a multitask model we trained end-to-end on the competition data already produces predictions that are a **credible but imperfect prior**: they capture global structure and achieve strong performance on vegetation and water, but carry systematic local errors on buildings and height in complex urban scenes. The residual between this prior and the ground truth is far smaller and more structured than the full prediction space.
 
 We therefore define the *slave problem*: **given a mostly-correct prediction map, identify precisely where it is wrong and estimate the correction**. This is structurally easier to learn:
 
@@ -70,11 +70,11 @@ SIGMA-Net operationalises the slave problem through a structured three-question 
 
 ### 3.1 Input Representation
 
-Both the AlphaEarth embedding (64 channels) and the Stage 1 prior map (4 channels) are concatenated at the input, forming a **68-channel joint representation**. This gives SIGMA-Net full access to both the raw satellite signal and the current prediction it must improve — the network can compare what the satellite "sees" with what the prior "claims" and resolve the discrepancy.
+Both the AlphaEarth embedding (64 channels) and the Stage 1 prior map (4 channels) are concatenated at the input, forming a **68-channel joint representation**. This gives SIGMA-Net full access to both the raw satellite signal and the current prediction it must improve the network can compare what the satellite "sees" with what the prior "claims" and resolve the discrepancy.
 
 ### 3.2 Backbone: ConvNeXt UNet
 
-The joint input is processed by a **4-level ConvNeXt UNet encoder–decoder**. Each encoder block applies depthwise convolution (7×7 kernel, grouped), BatchNorm, GELU activation, and a 4× pointwise channel expansion — a computationally efficient pattern that captures both local texture and multi-scale structural context. Skip connections from each encoder level are concatenated with the corresponding decoder level, preserving fine spatial detail critical for boundary-accurate segmentation.
+The joint input is processed by a **4-level ConvNeXt UNet encoder–decoder**. Each encoder block applies depthwise convolution (7×7 kernel, grouped), BatchNorm, GELU activation, and a 4× pointwise channel expansion a computationally efficient pattern that captures both local texture and multi-scale structural context. Skip connections from each encoder level are concatenated with the corresponding decoder level, preserving fine spatial detail critical for boundary-accurate segmentation.
 
 ### 3.3 Six Prediction Heads
 
