@@ -4,7 +4,7 @@
 **Team**: The_Alchemist &nbsp;·&nbsp; **Public leaderboard score: 0.6030**
 
 **Author**: Abdourahamane Ide Salifou &nbsp;·&nbsp; [aidesali@andrew.cmu.edu](mailto:aidesali@andrew.cmu.edu)  
-**Affiliation**: Carnegie Mellon University Africa — Engineering Student in Artificial Intelligence
+**Affiliation**: Carnegie Mellon University Africa, Engineering Student in Artificial Intelligence
 
 | IoU Building | IoU Vegetation | IoU Water | RMSE Bld Height | RMSE Veg Height | **Final Score** |
 |:---:|:---:|:---:|:---:|:---:|:---:|
