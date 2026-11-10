@@ -1,14 +1,22 @@
 # SIGMA-Net: Satellite-grounded Inference for Geospatial Map Anchoring
 
 **1st place solution** — ESA Φ-lab × ITU × AI for Good: *Reaching New Heights with GeoFM* Challenge  
-**Team**: The_Alchemist &nbsp;·&nbsp; **Public leaderboard score: 0.6030**
+**Team**: The_Alchimist &nbsp;·&nbsp; **Final leaderboard: 1st place, 0.6197**
 
 **Author**: Abdourahamane Ide Salifou &nbsp;·&nbsp; [aidesali@andrew.cmu.edu](mailto:aidesali@andrew.cmu.edu)  
 **Affiliation**: Carnegie Mellon University Africa, Engineering Student in Artificial Intelligence
 
-| IoU Building | IoU Vegetation | IoU Water | RMSE Bld Height | RMSE Veg Height | **Final Score** |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| 0.6277 | 0.9193 | 0.7129 | 1.608 m | 2.868 m | **0.6030** |
+| Leaderboard | Rank | **Final Score** | IoU Building | IoU Vegetation | IoU Water | RMSE Bld Height | RMSE Veg Height |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Final** | **1st** | **0.6197** | 0.6459 | 0.8988 | 0.7648 | 1.525 m | 2.855 m |
+| Public | — | 0.6030 | 0.6277 | 0.9193 | 0.7129 | 1.608 m | 2.868 m |
+
+| Resource | Link |
+|---|---|
+| Model weights (GeoMTConvNeXt prior, SIGMA-Net checkpoint, anchor index, normalisation stats) | [Hugging Face: `Abdoul27/embed2heights-geoconvnext`](https://huggingface.co/Abdoul27/embed2heights-geoconvnext) |
+| Technical report (PDF) | [`docs/SIGMA-Net_Technical_Report.pdf`](docs/SIGMA-Net_Technical_Report.pdf) |
+| Reproduction notebook | [`sigma_net_reproduce.ipynb`](sigma_net_reproduce.ipynb) |
+| Original repository | [`SalifouAbdourahamane/reaching-new-heights-sigma-net`](https://github.com/SalifouAbdourahamane/reaching-new-heights-sigma-net) |
 
 ---
 
