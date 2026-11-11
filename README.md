@@ -3,7 +3,7 @@
 **1st place solution** — ESA Φ-lab × ITU × AI for Good: *Reaching New Heights with GeoFM* Challenge  
 **Team**: The_Alchimist &nbsp;·&nbsp; **Final leaderboard: 1st place, 0.6197**
 
-**Author**: Abdourahamane Ide Salifou &nbsp;·&nbsp; [aidesali@andrew.cmu.edu](mailto:aidesali@andrew.cmu.edu)  
+**Author**: Abdourahamane Ide Salifou  
 **Affiliation**: Carnegie Mellon University Africa, Engineering Student in Artificial Intelligence
 
 | Leaderboard | Rank | **Final Score** | IoU Building | IoU Vegetation | IoU Water | RMSE Bld Height | RMSE Veg Height |
